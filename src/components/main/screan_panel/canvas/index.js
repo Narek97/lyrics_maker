@@ -5,7 +5,7 @@ import * as Styled from './styled'
 
 function CanvasPanel({ imageUrl, canvasHeight, canvasWidth }) {
   const size = useWindowSize()
-  console.log(size)
+
   return (
     <Styled.Container>
       <Styled.Div1>

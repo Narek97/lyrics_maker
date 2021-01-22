@@ -16,10 +16,11 @@ export const Audio = styled.div`
 `
 
 export const Img = styled.img`
+  width: 20px;
   padding: 0px 10px;
 `
 
-export const AudioButton = styled.button`
+export const Button = styled.button`
   padding: 5px;
   display: flex;
   background-color: #ffffff;
@@ -28,14 +29,14 @@ export const AudioButton = styled.button`
 export const TimeStart = styled.span`
   text-align: center;
   width: 95px;
-  padding: 0 20px 15px 0;
+  padding: 0 20px 4px 0;
   font-size: 17px;
 `
 export const TimeEnd = styled(TimeStart)`
-  padding: 0 0 15px 20px;
+  padding: 0 0 4px 20px;
 `
 
-export const TimeDiv = styled.div`
+export const TimeContainer = styled.div`
   width: 100%;
   background-color: #c8d8fd;
   overflow: hidden;
@@ -43,7 +44,7 @@ export const TimeDiv = styled.div`
 `
 
 export const TimeLine = styled.div`
-  padding: 13px;
+  padding: 10px;
   width: 100%;
   background-color: #5690fc;
   transform: ${(props) => `translate(${props.timePercent}%)`};

@@ -11,8 +11,6 @@ export const Div1 = styled.div`
   position: relative;
   min-width: 100%;
   min-height: 100%;
-  max-height: 730.102px;
-  max-width: 1118.55px;
   flex: 1 1 0%;
   overflow: auto;
   overscroll-behavior: contain;

@@ -5,42 +5,45 @@ import {
   DELET_AUDIO_CHUNK,
   CHANGE_AUDIO_CHUNK_TEXT,
   CHANGE_AUDIO_CHUNK_END,
+  RESIZE_TIME_LINER,
 } from './types'
 
 const initialState = DATA
 
 export const appReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_AUDIO_CHUNK:
-      const Chunk = {
-        ...AUDIO_CHUNK,
-        id: Date.now(),
-        start: action.payload.start + 1,
-        end: action.payload.duration,
-      }
-      return produce(state, (drafState) => {
+  return produce(state, (drafState) => {
+    switch (action.type) {
+      case ADD_AUDIO_CHUNK:
+        const Chunk = {
+          ...AUDIO_CHUNK,
+          id: Date.now(),
+          start: action.payload.start + 1,
+          end: action.payload.duration,
+        }
         drafState.audioChunks.push(Chunk)
-      })
-    case DELET_AUDIO_CHUNK:
-      return produce(state, (drafState) => {
+        break
+      case DELET_AUDIO_CHUNK:
         drafState.audioChunks.splice(
           state.audioChunks.findIndex((el) => el.id === action.payload),
           1
         )
-      })
-    case CHANGE_AUDIO_CHUNK_TEXT:
-      return produce(state, (drafState) => {
+        break
+      case CHANGE_AUDIO_CHUNK_TEXT:
         drafState.audioChunks.find(
           (el) => el.id === action.payload.id
         ).textParams.text = action.payload.val
-      })
-    case CHANGE_AUDIO_CHUNK_END:
-      return produce(state, (drafState) => {
+        break
+      case CHANGE_AUDIO_CHUNK_END:
         drafState.audioChunks.find((el) => el.id === action.payload.id).end =
           action.payload.val
-      })
-
-    default:
-      return state
-  }
+        break
+      case RESIZE_TIME_LINER:
+        drafState.audioChunks.find((el) => el.id === action.payload.id).end =
+          action.payload.val
+          
+        break
+      default:
+        return state
+    }
+  })
 }

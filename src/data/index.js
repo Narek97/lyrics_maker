@@ -9,8 +9,8 @@ export const DATA = {
   audioChunks: [
     {
       id: 0,
-      start: 0,
-      end: 143,
+      start: 20,
+      end: 63,
       textParams: {
         text: 'Lorem Ipsum',
         fontName: 'Montserrat',
@@ -24,8 +24,8 @@ export const DATA = {
 
     // {
     //   id: 1,
-    //   start: 0,
-    //   end: 344,
+    //   start: 43,
+    //   end: 84,
     //   textParams: {
     //     text: '1',
     //     fontName: 'Montserrat',
@@ -38,8 +38,8 @@ export const DATA = {
     // },
     // {
     //   id: 2,
-    //   start: 0,
-    //   end: 344,
+    //   start: 84,
+    //   end: 143,
     //   textParams: {
     //     text: '2',
     //     fontName: 'Montserrat',

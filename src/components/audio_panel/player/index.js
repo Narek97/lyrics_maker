@@ -6,13 +6,13 @@ import Play from '../../../img/play.png'
 import Left from '../../../img/rotate-left.png'
 import Right from '../../../img/rotate-right.png'
 import { Time } from '../../../useHook/useTime'
+import AudioChanks from '../audio_chanks'
 
 function Player({ url, duration }) {
   const audio = useRef('audio_tag')
   const [dur, setDur] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
   const timePercent = -100 + (currentTime / dur) * 100
-
   const {
     hours: hoursStart,
     minutes: minutesStart,
@@ -37,16 +37,21 @@ function Player({ url, duration }) {
         <Styled.TimeStart>
           {hoursStart}:{minutesStart}:{secondsStart}
         </Styled.TimeStart>
-        <Styled.AudioButton>
-          -1s <Styled.Img src={Left} alt="Left" />
-        </Styled.AudioButton>
-        <Styled.AudioButton onClick={toggleAudio}>
+        <Styled.Button
+          onClick={() => {
+            setCurrentTime((prevCount) => prevCount - 5)
+            audio.current.currentTime = currentTime - 5
+          }}
+        >
+          -5s <Styled.Img src={Left} alt="Left" />
+        </Styled.Button>
+        <Styled.Button onClick={toggleAudio}>
           {audio.current.paused ? (
             <Styled.Img src={Play} alt="Play" />
           ) : (
             <Styled.Img src={Pause} alt="Pause" />
           )}
-        </Styled.AudioButton>
+        </Styled.Button>
         <audio
           onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
           onCanPlay={(e) => setDur(e.target.duration)}
@@ -55,14 +60,22 @@ function Player({ url, duration }) {
           preload="true"
           src={url}
         />
-        <Styled.AudioButton>
-          <Styled.Img src={Right} alt="Right" /> +1s
-        </Styled.AudioButton>
+        <Styled.Button>
+          <Styled.Img
+            src={Right}
+            alt="Right"
+            onClick={() => {
+              setCurrentTime((prevCount) => prevCount + 5)
+              audio.current.currentTime = currentTime + 5
+            }}
+          />
+          +5s
+        </Styled.Button>
         <Styled.TimeEnd>
           {hoursEnd}:{minutsEnd}:{secondsEnd}
         </Styled.TimeEnd>
       </Styled.Audio>
-      <Styled.TimeDiv>
+      <Styled.TimeContainer>
         <Styled.TimeLine timePercent={timePercent} />
         <Styled.Input
           onChange={handleProgress}
@@ -71,7 +84,8 @@ function Player({ url, duration }) {
           name="progresBar"
           id="prgbar"
         />
-      </Styled.TimeDiv>
+      </Styled.TimeContainer>
+      <AudioChanks />
     </Styled.Container>
   )
 }

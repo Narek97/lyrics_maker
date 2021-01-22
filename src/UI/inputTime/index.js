@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useCallback } from 'react'
 import { connect } from 'react-redux'
 import * as Styled from './styled'
 import { chageAudioChankStart, chageAudioChankEnd } from '../../redux/action'
@@ -16,25 +16,29 @@ function InputTime({
   const refEnd = useRef(null)
   const [valueStart, setValueStart] = useState('')
   const [valueEnd, setValueEnd] = useState('')
+
   const {
     hours: hoursStart,
     minutes: minutesStart,
     seconds: secondsStart,
   } = Time(start)
   const { hours: hoursEnd, minutes: minutsEnd, seconds: secondsEnd } = Time(end)
-
-  const onBlurTimeStart = () => {
+  const onBlurTimeStart = useCallback(() => {
+    console.log(valueStart, 'valueStart')
     const val = Second(refStart.current.value)
     chageAudioChankStart(val, id)
-  }
-  const onBlurTimeEnd = () => {
+  }, [chageAudioChankStart, id, valueStart])
+
+  const onBlurTimeEnd = useCallback(() => {
+    console.log(valueEnd, 'valueEnd')
     const val = Second(refEnd.current.value)
     chageAudioChankEnd(val, id)
-  }
+  }, [chageAudioChankEnd, id, valueEnd])
+
   useEffect(() => {
     refStart.current.addEventListener('blur', onBlurTimeStart)
     refEnd.current.addEventListener('blur', onBlurTimeEnd)
-  }, [])
+  }, [onBlurTimeEnd, onBlurTimeStart])
 
   return (
     <>
