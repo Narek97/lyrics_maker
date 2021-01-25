@@ -4,11 +4,12 @@ import * as Styled from './styled'
 import { chageAudioChankStart, chageAudioChankEnd } from '../../redux/action'
 import { Time } from '../../useHook/useTime'
 import { second } from '../../useHook/useSecond'
-import { useValidateTime } from '../../useHook/useValidateTime'
+import { isValidateStart, isValidateEnd } from '../../helperFunctions'
 
 function InputTime({
   chageAudioChankStart,
   chageAudioChankEnd,
+  data,
   id,
   start,
   end,
@@ -34,13 +35,13 @@ function InputTime({
     console.log(valueStart, 'valueStart')
     const val = second(refStart.current.value)
     chageAudioChankStart(val, id)
-  }, [setValueStart])
+  }, [setValueStart]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const onBlurTimeEnd = useCallback(() => {
     console.log(valueEnd, 'valueEnd')
     const val = second(refEnd.current.value)
     chageAudioChankEnd(val, id)
-  }, [setValueEnd])
+  }, [setValueEnd]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     refStart.current.addEventListener('blur', onBlurTimeStart)
@@ -50,14 +51,26 @@ function InputTime({
   useEffect(() => {
     setValueStart(`${hoursStart}:${minutesStart}:${secondsStart}`)
     setValueEnd(`${hoursEnd}:${minutsEnd}:${secondsEnd}`)
-  }, [start, end])
+  }, [start, end]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const onChangeStart = (e) => {
+    if (isValidateStart(e.target.value, data, id)) {
+      setValueStart(e.target.value)
+    }
+  }
+
+  const onChangeEnd = (e) => {
+    if (isValidateEnd(e.target.value, data, id)) {
+      setValueEnd(e.target.value)
+    }
+  }
 
   return (
     <>
       <span>start</span>
       <Styled.InputTime
         value={valueStart}
-        onChange={((e) => setValueStart(e.target.value), useValidateTime())}
+        onChange={onChangeStart}
         ref={refStart}
         name="appt-time"
         type="time"
@@ -68,7 +81,7 @@ function InputTime({
       <Styled.InputTime
         required
         value={valueEnd}
-        onChange={(e) => setValueEnd(e.target.value)}
+        onChange={onChangeEnd}
         ref={refEnd}
         name="appt-time"
         type="time"
@@ -78,9 +91,13 @@ function InputTime({
   )
 }
 
+const mapStateToProps = (state) => ({
+  data: state.app,
+})
+
 const mapDispatchToProps = {
   chageAudioChankStart,
   chageAudioChankEnd,
 }
 
-export default connect(null, mapDispatchToProps)(InputTime)
+export default connect(mapStateToProps, mapDispatchToProps)(InputTime)

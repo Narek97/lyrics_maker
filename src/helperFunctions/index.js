@@ -1,4 +1,5 @@
 import { DURATION } from '../constants'
+import { second } from '../useHook/useSecond'
 
 export const getElementPercent = (val, width) => (val / width) * 100
 
@@ -153,4 +154,32 @@ export const onResize = (
       idx
     )
   }
+}
+
+export const isValidateStart = (time, data, id) => {
+  const index = data.audioChunks.findIndex((el) => el.id === id)
+  if (
+    data.audioChunks[index - 1] &&
+    second(time) <= data.audioChunks[index - 1].end
+  ) {
+    return false
+  }
+  if (second(time) <= data.audioChunks[index].end - 10) {
+    return true
+  }
+  return false
+}
+
+export const isValidateEnd = (time, data, id) => {
+  const index = data.audioChunks.findIndex((el) => el.id === id)
+  if (
+    data.audioChunks[index + 1] &&
+    second(time) >= data.audioChunks[index + 1].start
+  ) {
+    return false
+  }
+  if (second(time) <= data.duration) {
+    return true
+  }
+  return false
 }
