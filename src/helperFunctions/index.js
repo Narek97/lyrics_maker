@@ -8,18 +8,18 @@ const changeChankTime = (val) => {
 }
 
 const validateTimeLInerRight = (audioChunks, idx, time) => {
-  if (changeChankTime(time) - audioChunks[idx].start < MIN_LENGTH) {
-    return false
-  }
+  // if (changeChankTime(time) - audioChunks[idx].start < MIN_LENGTH) {
+  //   return false
+  // }
   if (audioChunks[idx + 1]) {
     return changeChankTime(time) <= audioChunks[idx + 1].start ? true : false
   }
   return true
 }
 const validateTimeLInerLeft = (audioChunks, idx, time) => {
-  if (audioChunks[idx].end - changeChankTime(time) < MIN_LENGTH) {
-    return false
-  }
+  // if (audioChunks[idx].end - changeChankTime(time) < MIN_LENGTH) {
+  //   return false
+  // }
   if (audioChunks[idx - 1]) {
     return changeChankTime(time) >= audioChunks[idx - 1].end ? true : false
   }
