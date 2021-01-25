@@ -8,10 +8,11 @@ function AudioChanks({ audioChunks }) {
 
   return (
     <Styled.Container ref={containerRef}>
-      {audioChunks.map((el) => (
+      {audioChunks.map((el, idx) => (
         <TimeLines
           key={el.id}
           el={el}
+          idx={idx}
           audioChunks={audioChunks}
           containerRef={containerRef}
         />

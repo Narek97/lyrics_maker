@@ -8,7 +8,6 @@ export const App = styled.div`
 
 export const button = css`
   font-family: 'Montserrat';
-  /* background: transparent; */
   border: 0;
   cursor: pointer;
   &:focus {

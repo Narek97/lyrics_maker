@@ -2,6 +2,8 @@ export const LYRICS_PANEL_WIDTH = 300
 export const MENU_PANEL_WIDTH = 230
 export const AUDIO_PANEL_HEIGHT = 170
 
+export const DURATION = 143
+
 export const PLAY =
   'https://www.flaticon.com/free-icon/play_727245?term=play&page=1&position=7&related_id=727245&origin=search'
 export const PAUSE =

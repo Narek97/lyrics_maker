@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
 import * as Styled from './styled'
 import TextStyle from './text_style'
 import filters from '../../../img/palette.png'
 import media from '../../../img/picture.png'
 import text from '../../../img/text.png'
 
-function MenuPanel() {
+export function MenuPanel() {
   const [isActive, setIsActive] = useState(false)
   return (
     <Styled.Container>
@@ -48,11 +47,3 @@ function MenuPanel() {
     </Styled.Container>
   )
 }
-
-const mapDispatchToProps = {}
-
-const mapStateToProps = (state) => ({
-  state: state.app,
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(MenuPanel)

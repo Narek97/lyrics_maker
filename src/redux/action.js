@@ -4,7 +4,7 @@ import {
   CHANGE_AUDIO_CHUNK_TEXT,
   CHANGE_AUDIO_CHUNK_START,
   CHANGE_AUDIO_CHUNK_END,
-  RESIZE_TIME_LINER,
+  CHANGE_AUDIO_CHUNK_START_END,
 } from './types'
 
 export const addNewAudioChunk = (start, duration) => {
@@ -34,7 +34,6 @@ export const chageAudioChankStart = (val, id) => {
     payload: { val, id },
   }
 }
-
 export const chageAudioChankEnd = (val, id) => {
   return {
     type: CHANGE_AUDIO_CHUNK_END,
@@ -42,10 +41,9 @@ export const chageAudioChankEnd = (val, id) => {
   }
 }
 
-export const resizeTimeLiner = (val, id) => {
-  console.log(val, id)
+export const chageAudioChankStartEnd = (val, id) => {
   return {
-    type: RESIZE_TIME_LINER,
+    type: CHANGE_AUDIO_CHUNK_START_END,
     payload: { val, id },
   }
 }

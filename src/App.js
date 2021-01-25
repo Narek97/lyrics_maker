@@ -1,6 +1,6 @@
 import * as Styled from './styled'
-import AudioPanel from './components/audio_panel'
-import Main from './components/main'
+import { AudioPanel } from './components/audio_panel'
+import { Main } from './components/main'
 
 function App() {
   return (

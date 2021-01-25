@@ -9,7 +9,7 @@ export const DATA = {
   audioChunks: [
     {
       id: 0,
-      start: 20,
+      start: 0,
       end: 63,
       textParams: {
         text: 'Lorem Ipsum',

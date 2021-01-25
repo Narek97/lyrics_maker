@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import * as Styled from './styled'
 import { chageAudioChankStart, chageAudioChankEnd } from '../../redux/action'
 import { Time } from '../../useHook/useTime'
-import { Second } from '../../useHook/useSecond'
+import { second } from '../../useHook/useSecond'
 
 function InputTime({
   chageAudioChankStart,
@@ -12,55 +12,66 @@ function InputTime({
   start,
   end,
 }) {
-  const refStart = useRef(null)
-  const refEnd = useRef(null)
-  const [valueStart, setValueStart] = useState('')
-  const [valueEnd, setValueEnd] = useState('')
-
+  const { hours: hoursEnd, minutes: minutsEnd, seconds: secondsEnd } = Time(end)
   const {
     hours: hoursStart,
     minutes: minutesStart,
     seconds: secondsStart,
   } = Time(start)
-  const { hours: hoursEnd, minutes: minutsEnd, seconds: secondsEnd } = Time(end)
+
+  const refStart = useRef(null)
+  const refEnd = useRef(null)
+
+  const [valueStart, setValueStart] = useState(
+    `${hoursStart}:${minutesStart}:${secondsStart}`
+  )
+  const [valueEnd, setValueEnd] = useState(
+    `${hoursEnd}:${minutsEnd}:${secondsEnd}`
+  )
+
   const onBlurTimeStart = useCallback(() => {
     console.log(valueStart, 'valueStart')
-    const val = Second(refStart.current.value)
+    const val = second(refStart.current.value)
     chageAudioChankStart(val, id)
-  }, [chageAudioChankStart, id, valueStart])
+  }, [setValueStart])
 
   const onBlurTimeEnd = useCallback(() => {
     console.log(valueEnd, 'valueEnd')
-    const val = Second(refEnd.current.value)
+    const val = second(refEnd.current.value)
     chageAudioChankEnd(val, id)
-  }, [chageAudioChankEnd, id, valueEnd])
+  }, [setValueEnd])
 
   useEffect(() => {
     refStart.current.addEventListener('blur', onBlurTimeStart)
     refEnd.current.addEventListener('blur', onBlurTimeEnd)
   }, [onBlurTimeEnd, onBlurTimeStart])
 
+  useEffect(() => {
+    setValueStart(`${hoursStart}:${minutesStart}:${secondsStart}`)
+    setValueEnd(`${hoursEnd}:${minutsEnd}:${secondsEnd}`)
+  }, [start, end])
+
   return (
     <>
       <span>start</span>
       <Styled.InputTime
-        defaultValue={`${hoursStart}:${minutesStart}:${secondsStart}`}
+        value={valueStart}
         onChange={(e) => setValueStart(e.target.value)}
         ref={refStart}
         name="appt-time"
         type="time"
-        step="2"
+        step="1"
       />
       <span>|</span>
       <span>end</span>
       <Styled.InputTime
         required
-        defaultValue={`${hoursEnd}:${minutsEnd}:${secondsEnd}`}
+        value={valueEnd}
         onChange={(e) => setValueEnd(e.target.value)}
         ref={refEnd}
         name="appt-time"
         type="time"
-        step="2"
+        step="1"
       />
     </>
   )

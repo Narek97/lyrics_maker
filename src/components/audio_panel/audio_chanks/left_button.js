@@ -1,12 +1,17 @@
 import React from 'react'
 import * as Styled from './styled'
 import { useElementResize } from '../../../useHook/useElementResize'
-export default function LeftButton({ lineRef, containerRef }) {
-  const onElementResize = useElementResize(lineRef, containerRef, 'left')
-
+export default function LeftButton({ lineRef, containerRef, el, idx }) {
+  const onElementResize = useElementResize(
+    lineRef,
+    containerRef,
+    'left',
+    el,
+    idx
+  )
   return (
-    <Styled.leftButton onMouseDown={onElementResize}>
+    <Styled.LeftButton onMouseDown={onElementResize}>
       <Styled.Icon className="material-icons">chevron_left</Styled.Icon>
-    </Styled.leftButton>
+    </Styled.LeftButton>
   )
 }

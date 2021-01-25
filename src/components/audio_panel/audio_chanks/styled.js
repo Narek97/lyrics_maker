@@ -8,7 +8,7 @@ const Div = css`
   height: 100%;
   width: 15px;
   background: rgba(118, 109, 232, 1);
-  cursor: e-resize;
+  /* cursor: e-resize; */
   user-select: none;
 `
 
@@ -55,6 +55,9 @@ export const TimeRulerSecont = styled(TimeRulerMinut)`
 
 export const TimeLinesItem = styled.div`
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   box-sizing: border-box;
   background: rgba(118, 109, 232, 0.4);
@@ -65,14 +68,15 @@ export const TimeLinesItem = styled.div`
   `};
 `
 
-export const CenterButton = styled.div`
-  width: 100%;
-  height: 100%;
+export const CenterButton = styled.span`
+  width: 25px;
   position: absolute;
+  color: #ffffff;
   cursor: grab;
+  user-select: none;
 `
 
-export const leftButton = styled.div`
+export const LeftButton = styled.div`
   left: 0;
   ${Div}
 `

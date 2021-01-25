@@ -26,7 +26,7 @@ function Player({ url, duration }) {
     audio.current.paused ? audio.current.play() : audio.current.pause()
 
   const handleProgress = (e) => {
-    let compute = (e.target.value * dur) / 100
+    let compute = Math.floor((e.target.value * dur) / 100)
     setCurrentTime(compute)
     audio.current.currentTime = compute
   }
@@ -75,6 +75,7 @@ function Player({ url, duration }) {
           {hoursEnd}:{minutsEnd}:{secondsEnd}
         </Styled.TimeEnd>
       </Styled.Audio>
+
       <Styled.TimeContainer>
         <Styled.TimeLine timePercent={timePercent} />
         <Styled.Input

@@ -4,8 +4,9 @@ import {
   ADD_AUDIO_CHUNK,
   DELET_AUDIO_CHUNK,
   CHANGE_AUDIO_CHUNK_TEXT,
+  CHANGE_AUDIO_CHUNK_START,
   CHANGE_AUDIO_CHUNK_END,
-  RESIZE_TIME_LINER,
+  CHANGE_AUDIO_CHUNK_START_END,
 } from './types'
 
 const initialState = DATA
@@ -33,14 +34,21 @@ export const appReducer = (state = initialState, action) => {
           (el) => el.id === action.payload.id
         ).textParams.text = action.payload.val
         break
+      case CHANGE_AUDIO_CHUNK_START:
+        drafState.audioChunks.find((el) => el.id === action.payload.id).start =
+          action.payload.val
+        break
       case CHANGE_AUDIO_CHUNK_END:
         drafState.audioChunks.find((el) => el.id === action.payload.id).end =
           action.payload.val
         break
-      case RESIZE_TIME_LINER:
-        drafState.audioChunks.find((el) => el.id === action.payload.id).end =
-          action.payload.val
-          
+
+      case CHANGE_AUDIO_CHUNK_START_END:
+        const el = drafState.audioChunks.find(
+          (el) => el.id === action.payload.id
+        )
+        el.end += action.payload.val - el.start
+        el.start = action.payload.val
         break
       default:
         return state

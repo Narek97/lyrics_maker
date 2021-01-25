@@ -17,7 +17,7 @@ function CanvasPanel({ imageUrl, canvasHeight, canvasWidth }) {
               imageUrl={imageUrl}
               width={size[0]}
             >
-              hello world
+              <span> hello world</span>
             </Styled.Div4>
           </Styled.Div3>
         </Styled.Div2>
