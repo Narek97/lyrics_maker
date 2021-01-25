@@ -4,6 +4,7 @@ import * as Styled from './styled'
 import { chageAudioChankStart, chageAudioChankEnd } from '../../redux/action'
 import { Time } from '../../useHook/useTime'
 import { second } from '../../useHook/useSecond'
+import { useValidateTime } from '../../useHook/useValidateTime'
 
 function InputTime({
   chageAudioChankStart,
@@ -56,7 +57,7 @@ function InputTime({
       <span>start</span>
       <Styled.InputTime
         value={valueStart}
-        onChange={(e) => setValueStart(e.target.value)}
+        onChange={((e) => setValueStart(e.target.value), useValidateTime())}
         ref={refStart}
         name="appt-time"
         type="time"
