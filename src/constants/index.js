@@ -4,6 +4,10 @@ export const AUDIO_PANEL_HEIGHT = 170
 
 export const DURATION = 143
 
+export const MIN = 0
+export const MAX = 100
+export const MIN_LENGTH = 10
+
 export const PLAY =
   'https://www.flaticon.com/free-icon/play_727245?term=play&page=1&position=7&related_id=727245&origin=search'
 export const PAUSE =

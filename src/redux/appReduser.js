@@ -18,7 +18,7 @@ export const appReducer = (state = initialState, action) => {
         const Chunk = {
           ...AUDIO_CHUNK,
           id: Date.now(),
-          start: action.payload.start + 1,
+          start: action.payload.start,
           end: action.payload.duration,
         }
         drafState.audioChunks.push(Chunk)

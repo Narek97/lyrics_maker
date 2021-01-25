@@ -1,4 +1,4 @@
-import { DURATION } from '../constants'
+import { DURATION, MIN, MAX, MIN_LENGTH } from '../constants'
 import { second } from '../useHook/useSecond'
 
 export const getElementPercent = (val, width) => (val / width) * 100
@@ -8,14 +8,20 @@ const changeChankTime = (val) => {
 }
 
 const validateTimeLInerRight = (audioChunks, idx, time) => {
+  if (changeChankTime(time) - audioChunks[idx].start < MIN_LENGTH) {
+    return false
+  }
   if (audioChunks[idx + 1]) {
-    return changeChankTime(time) < audioChunks[idx + 1].start ? true : false
+    return changeChankTime(time) <= audioChunks[idx + 1].start ? true : false
   }
   return true
 }
 const validateTimeLInerLeft = (audioChunks, idx, time) => {
+  if (audioChunks[idx].end - changeChankTime(time) < MIN_LENGTH) {
+    return false
+  }
   if (audioChunks[idx - 1]) {
-    return changeChankTime(time) > audioChunks[idx - 1].end ? true : false
+    return changeChankTime(time) >= audioChunks[idx - 1].end ? true : false
   }
   return true
 }
@@ -33,12 +39,12 @@ const moveTimeLinerCenter = (
     container.width
   )
   const timeLinerWidth = getElementPercent(timeLiner.width, container.width)
-  if (newPos < 0) {
+  if (newPos < MIN) {
     return changeChankTime(
       getElementPercent(element.getBoundingClientRect().left, container.width)
     )
   }
-  if (timeLinerWidth + newPos >= 100) {
+  if (timeLinerWidth + newPos >= MAX) {
     return changeChankTime(getElementPercent(timeLiner.left, container.width))
   }
   const isValidLeft = validateTimeLInerLeft(audioChunks, idx, newPos)
@@ -98,7 +104,7 @@ const moveTimeLinerRight = (
 
   const isValid = validateTimeLInerRight(audioChunks, idx, newWidth + firstTime)
 
-  if (newWidth + oldLeft <= 100 && isValid) {
+  if (newWidth + oldLeft <= MAX && isValid) {
     element.style.width = `${newWidth}%`
     return changeChankTime(newWidth + firstTime)
   } else {
