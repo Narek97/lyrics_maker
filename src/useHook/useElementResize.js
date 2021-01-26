@@ -8,10 +8,10 @@ import {
 } from '../redux/action'
 
 export const useElementResize = (ref, containerRef, tipe, el, idx) => {
+  const [initialTimerSize, setInitialTimerSize] = useState(null)
+
   const dispatch = useDispatch()
   const [isResizing, setIsResizing] = useState(false)
-  const [initialTimerWidth, setInitialTimerWidth] = useState(0)
-  const [initialTimerLeft, setInitialTimerLeft] = useState(0)
   const audioChunks = useSelector((state) => state.app.audioChunks)
   let time = null
 
@@ -21,10 +21,9 @@ export const useElementResize = (ref, containerRef, tipe, el, idx) => {
       ref,
       containerRef,
       tipe,
-      initialTimerWidth,
-      initialTimerLeft,
+      audioChunks,
       idx,
-      audioChunks
+      initialTimerSize
     )
     time = data
   }
@@ -43,8 +42,10 @@ export const useElementResize = (ref, containerRef, tipe, el, idx) => {
   }
 
   const startResizing = () => {
-    setInitialTimerWidth(ref.current.getBoundingClientRect().width)
-    setInitialTimerLeft(ref.current.getBoundingClientRect().left)
+    setInitialTimerSize({
+      width: ref.current.getBoundingClientRect().width,
+      left: ref.current.getBoundingClientRect().left,
+    })
     setIsResizing(true)
   }
 
