@@ -1,13 +1,13 @@
 import { DURATION, MIN, MAX, MIN_LENGTH } from '../constants'
 import { second } from '../useHook/useSecond'
 
-export const getElementPercent = (val, width) => (val / width) * 100
+export const getPixelToPrecent = (val, width) => (val / width) * 100
 
-const getElemetTime = (val) => {
+const getPrecentToTime = (val) => {
   return Math.ceil((val * DURATION) / 100)
 }
 
-const substring = (str) => str.substring(0, str.length - 1)
+const removeLastElemet = (str) => str.substring(0, str.length - 1)
 
 const validateTimeLinerRight = (audioChunks, idx, time) => {
   if (audioChunks[idx + 1]) {
@@ -29,11 +29,11 @@ const validateTimeLiner = (
   if (newPos < MIN || newPos + timeLinerWithPerecent > MAX) {
     return false
   }
-  const timeStart = getElemetTime(newPos)
+  const timeStart = getPrecentToTime(newPos)
   if (validateTimeLinerLeft(audioChunks, idx, timeStart)) {
     return false
   }
-  const timeEnd = getElemetTime(newPos + timeLinerWithPerecent)
+  const timeEnd = getPrecentToTime(newPos + timeLinerWithPerecent)
   if (validateTimeLinerRight(audioChunks, idx, timeEnd)) {
     return false
   }
@@ -48,11 +48,11 @@ const moveTimeLinerCenter = (
   audioChunks,
   idx
 ) => {
-  const newPos = getElementPercent(
+  const newPos = getPixelToPrecent(
     e.pageX - 10 - timeLiner.width / 2,
     container.width
   )
-  const timeLinerWithPerecent = getElementPercent(
+  const timeLinerWithPerecent = getPixelToPrecent(
     timeLiner.width,
     container.width
   )
@@ -65,7 +65,7 @@ const moveTimeLinerCenter = (
   if (isValid) {
     element.style.left = `${newPos}%`
   }
-  return getElemetTime(substring(element.style.left))
+  return getPrecentToTime(removeLastElemet(element.style.left))
 }
 
 const moveTimeLinerLeft = (
@@ -76,15 +76,15 @@ const moveTimeLinerLeft = (
   idx,
   initialTimerSize
 ) => {
-  const newLeft = getElementPercent(e.pageX - 10, container.width)
-  const oldLeft = getElementPercent(initialTimerSize.left - 10, container.width)
-  const newWidth = getElementPercent(initialTimerSize.width, container.width)
+  const newLeft = getPixelToPrecent(e.pageX - 10, container.width)
+  const oldLeft = getPixelToPrecent(initialTimerSize.left - 10, container.width)
+  const newWidth = getPixelToPrecent(initialTimerSize.width, container.width)
   const isValid = validateTimeLiner(newLeft, audioChunks, idx)
   if (isValid) {
     element.style.left = `${newLeft}%`
     element.style.width = `${newWidth - (newLeft - oldLeft)}%`
   }
-  return getElemetTime(substring(element.style.left))
+  return getPrecentToTime(removeLastElemet(element.style.left))
 }
 
 const moveTimeLinerRight = (
@@ -95,16 +95,18 @@ const moveTimeLinerRight = (
   idx,
   initialTimerSize
 ) => {
-  const firstTimePerecent = getElementPercent(
+  const firstTimePerecent = getPixelToPrecent(
     initialTimerSize.left - 10,
     container.width
   )
-  const newWidth = getElementPercent(e.pageX - 10, container.width)
+  const newWidth = getPixelToPrecent(e.pageX - 10, container.width)
   const isValid = validateTimeLiner(newWidth, audioChunks, idx)
   if (isValid) {
     element.style.width = `${newWidth - firstTimePerecent}%`
   }
-  return getElemetTime(+substring(element.style.width) + firstTimePerecent)
+  return getPrecentToTime(
+    +removeLastElemet(element.style.width) + firstTimePerecent
+  )
 }
 
 export const onResize = (

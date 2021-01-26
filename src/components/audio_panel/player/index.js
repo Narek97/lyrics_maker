@@ -17,7 +17,7 @@ const Player = ({ url, duration }) => {
     hours: hoursStart,
     minutes: minutesStart,
     seconds: secondsStart,
-  } = Time(Math.floor(currentTime))
+  } = Time(Math.ceil(currentTime))
   const { hours: hoursEnd, minutes: minutsEnd, seconds: secondsEnd } = Time(
     duration
   )
@@ -26,7 +26,7 @@ const Player = ({ url, duration }) => {
     audio.current.paused ? audio.current.play() : audio.current.pause()
 
   const handleProgress = (e) => {
-    let compute = Math.floor((e.target.value * dur) / 100)
+    let compute = Math.ceil((e.target.value * dur) / 100)
     setCurrentTime(compute)
     audio.current.currentTime = compute
   }

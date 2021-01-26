@@ -7,7 +7,7 @@ const InputText = ({ chageAudioChankText, id, text }) => {
   const ref = useRef(null)
   const [value, setValue] = useState('')
   const onBlurText = useCallback(() => {
-    console.log(value, 852)
+    console.log(value, 'InputText')
     chageAudioChankText(value, id)
   }, [chageAudioChankText, value, id])
 
