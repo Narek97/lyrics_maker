@@ -5,7 +5,7 @@ import * as Styled from './styled'
 import { useElementResize } from '../../../useHook/useElementResize'
 import { DURATION } from '../../../constants'
 
-export function TimeLines({ containerRef, el, idx }) {
+export const TimeLines = React.memo(({ containerRef, el, idx }) => {
   const lineRef = useRef(null)
   const onElementResize = useElementResize(
     lineRef,
@@ -47,4 +47,4 @@ export function TimeLines({ containerRef, el, idx }) {
       />
     </Styled.TimeLinesItem>
   )
-}
+})

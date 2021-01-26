@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as Styled from '../properties/styled'
 
-function Aligment() {
+const Aligment = () => {
   return (
     <Styled.Container>
       <Styled.Text> Aligment</Styled.Text>

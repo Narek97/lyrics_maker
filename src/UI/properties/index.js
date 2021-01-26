@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as Styled from './styled'
 
-function Properties() {
+const Properties = () => {
   return (
     <Styled.Container>
       <Styled.Text> Properties</Styled.Text>

@@ -6,14 +6,14 @@ import { Time } from '../../useHook/useTime'
 import { second } from '../../useHook/useSecond'
 import { isValidateStart, isValidateEnd } from '../../helperFunctions'
 
-function InputTime({
+const InputTime = ({
   chageAudioChankStart,
   chageAudioChankEnd,
   data,
   id,
   start,
   end,
-}) {
+}) => {
   const { hours: hoursEnd, minutes: minutsEnd, seconds: secondsEnd } = Time(end)
   const {
     hours: hoursStart,

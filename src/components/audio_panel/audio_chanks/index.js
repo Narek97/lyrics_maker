@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import * as Styled from './styled'
 import { TimeLines } from './time_line'
 
-function AudioChanks({ audioChunks }) {
+const AudioChanks = ({ audioChunks }) => {
   const containerRef = useRef(null)
 
   return (

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as Styled from './styled'
 
-function Opacity() {
+const Opacity = () => {
   return (
     <Styled.Container>
       <Styled.Text> Opacity</Styled.Text>

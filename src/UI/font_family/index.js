@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import * as Styled from './styled'
 
-function FontFamily() {
+const FontFamily = () => {
   const [isActive, setIsActive] = useState(false)
   const [fonts] = useState([
     { value: 'Montserrat' },

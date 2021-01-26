@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as Styled from './styled'
 
-function Size() {
+const Size = () => {
   return (
     <Styled.Container>
       <Styled.Text> Text Size</Styled.Text>

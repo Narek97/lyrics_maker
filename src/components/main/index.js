@@ -4,7 +4,7 @@ import { MenuPanel } from './menu_panel'
 import CanvasPanel from './screan_panel/canvas'
 import LyricsPanel from './lyrics'
 
-export function Main() {
+export const Main = React.memo(() => {
   return (
     <Styled.Container>
       <MenuPanel />
@@ -12,4 +12,4 @@ export function Main() {
       <LyricsPanel />
     </Styled.Container>
   )
-}
+})

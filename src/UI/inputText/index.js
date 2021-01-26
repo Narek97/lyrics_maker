@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import * as Styled from './styled'
 import { chageAudioChankText } from '../../redux/action'
 
-function InputText({ chageAudioChankText, id, text }) {
+const InputText = ({ chageAudioChankText, id, text }) => {
   const ref = useRef(null)
   const [value, setValue] = useState('')
   const onBlurText = useCallback(() => {

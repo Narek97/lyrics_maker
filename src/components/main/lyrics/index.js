@@ -4,7 +4,7 @@ import * as Styled from './styled'
 import { addNewAudioChunk } from '../../../redux/action'
 import Box from './Box'
 
-function LyricsPanel({ audioChunks, addNewAudioChunk, duration }) {
+const LyricsPanel = ({ audioChunks, addNewAudioChunk, duration }) => {
   const addChunk = () => {
     const end = audioChunks[audioChunks.length - 1].end
     if (end < duration) {

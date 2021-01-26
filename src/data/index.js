@@ -21,35 +21,6 @@ export const DATA = {
         styles: ['bold', 'italic', 'underlined'],
       },
     },
-
-    // {
-    //   id: 1,
-    //   start: 43,
-    //   end: 84,
-    //   textParams: {
-    //     text: '1',
-    //     fontName: 'Montserrat',
-    //     color: '00000',
-    //     size: 16,
-    //     coordinates: [120, 190],
-    //     opacity: 1,
-    //     styles: ['bold', 'italic', 'underlined'],
-    //   },
-    // },
-    // {
-    //   id: 2,
-    //   start: 84,
-    //   end: 143,
-    //   textParams: {
-    //     text: '2',
-    //     fontName: 'Montserrat',
-    //     color: '00000',
-    //     size: 16,
-    //     coordinates: [120, 190],
-    //     opacity: 1,
-    //     styles: ['bold', 'italic', 'underlined'],
-    //   },
-    // },
   ],
 }
 
@@ -60,10 +31,10 @@ export const AUDIO_CHUNK = {
   textParams: {
     text: '',
     fontName: 'Montserrat',
-    color: null,
-    size: null,
+    color: '00000',
+    size: 16,
     coordinates: [null, null],
-    opacity: null,
+    opacity: 1,
     styles: ['bold', 'italic', 'underlined'],
   },
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as Styled from './styled'
 
-function Color() {
+const Color = () => {
   return (
     <Styled.Container>
       <Styled.Text> Text Color</Styled.Text>

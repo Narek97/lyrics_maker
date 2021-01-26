@@ -6,7 +6,7 @@ import { deletAudioChunk } from '../../../../redux/action'
 import InputText from '../../../../UI/inputText'
 import InputTime from '../../../../UI/inputTime'
 
-export function Box({ id, text, start, end, deletAudioChunk }) {
+export const Box = ({ id, text, start, end, deletAudioChunk }) => {
   return (
     <Styled.Div>
       {id !== 0 ? (

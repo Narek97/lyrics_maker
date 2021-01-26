@@ -8,7 +8,7 @@ import Right from '../../../img/rotate-right.png'
 import { Time } from '../../../useHook/useTime'
 import AudioChanks from '../audio_chanks'
 
-function Player({ url, duration }) {
+const Player = ({ url, duration }) => {
   const audio = useRef('audio_tag')
   const [dur, setDur] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)

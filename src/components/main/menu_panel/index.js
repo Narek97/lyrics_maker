@@ -5,7 +5,7 @@ import filters from '../../../img/palette.png'
 import media from '../../../img/picture.png'
 import text from '../../../img/text.png'
 
-export function MenuPanel() {
+export const MenuPanel = React.memo(() => {
   const [isActive, setIsActive] = useState(false)
   return (
     <Styled.Container>
@@ -46,4 +46,4 @@ export function MenuPanel() {
       </Styled.Ul>
     </Styled.Container>
   )
-}
+})
