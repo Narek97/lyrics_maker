@@ -37,7 +37,6 @@ const validateTimeLiner = (
   if (validateTimeLinerRight(audioChunks, idx, timeEnd)) {
     return false
   }
-
   return true
 }
 
@@ -53,7 +52,6 @@ const moveTimeLinerCenter = (
     e.pageX - 10 - timeLiner.width / 2,
     container.width
   )
-  const time = getElemetTime(substring(element.style.left))
   const timeLinerWithPerecent = getElementPercent(
     timeLiner.width,
     container.width
@@ -67,7 +65,7 @@ const moveTimeLinerCenter = (
   if (isValid) {
     element.style.left = `${newPos}%`
   }
-  return time
+  return getElemetTime(substring(element.style.left))
 }
 
 const moveTimeLinerLeft = (
@@ -81,36 +79,32 @@ const moveTimeLinerLeft = (
   const newLeft = getElementPercent(e.pageX - 10, container.width)
   const oldLeft = getElementPercent(initialTimerSize.left - 10, container.width)
   const newWidth = getElementPercent(initialTimerSize.width, container.width)
-  const time = getElemetTime(substring(element.style.left))
   const isValid = validateTimeLiner(newLeft, audioChunks, idx)
   if (isValid) {
     element.style.left = `${newLeft}%`
     element.style.width = `${newWidth - (newLeft - oldLeft)}%`
   }
-  return time
+  return getElemetTime(substring(element.style.left))
 }
 
 const moveTimeLinerRight = (
   e,
   element,
-  timeLiner,
   container,
   audioChunks,
   idx,
   initialTimerSize
 ) => {
-  const firstTime = getElementPercent(
+  const firstTimePerecent = getElementPercent(
     initialTimerSize.left - 10,
     container.width
   )
-
-  const newWidth = getElementPercent(e.pageX, container.width)
-  const time = getElemetTime(substring(element.style.width))
+  const newWidth = getElementPercent(e.pageX - 10, container.width)
   const isValid = validateTimeLiner(newWidth, audioChunks, idx)
   if (isValid) {
-    element.style.width = `${newWidth - firstTime}%`
+    element.style.width = `${newWidth - firstTimePerecent}%`
   }
-  return time
+  return getElemetTime(+substring(element.style.width) + firstTimePerecent)
 }
 
 export const onResize = (
@@ -151,7 +145,6 @@ export const onResize = (
     return moveTimeLinerRight(
       e,
       element,
-      timeLiner,
       container,
       audioChunks,
       idx,
