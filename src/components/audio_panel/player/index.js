@@ -9,7 +9,7 @@ import { Time } from '../../../useHook/useTime'
 import AudioChanks from '../audio_chanks'
 
 const Player = ({ url, duration }) => {
-  const audio = useRef('audio_tag')
+  const audio = useRef(null)
   const [dur, setDur] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
   const timePercent = -100 + (currentTime / dur) * 100

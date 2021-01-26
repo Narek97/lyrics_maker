@@ -30,15 +30,19 @@ export const useElementResize = (ref, containerRef, tipe, el, idx) => {
 
   const onStopResize = () => {
     setIsResizing(false)
+    let fn = () => {}
+
     if (tipe === 'center' && time) {
-      dispatch(chageAudioChankStartEnd(time, el.id))
+      fn = chageAudioChankStartEnd
     }
     if (tipe === 'left' && time) {
-      dispatch(chageAudioChankStart(time, el.id))
+      fn = chageAudioChankStart
     }
     if (tipe === 'right' && time) {
-      dispatch(chageAudioChankEnd(time, el.id))
+      fn = chageAudioChankEnd
     }
+
+    dispatch(fn(time, el.id))
   }
 
   const startResizing = () => {

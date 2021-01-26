@@ -4,19 +4,19 @@ import { useWindowSize } from '../../../../useHook/useWindowSize'
 import * as Styled from './styled'
 
 const CanvasPanel = ({ imageUrl, canvasHeight, canvasWidth, text }) => {
-  const size = useWindowSize()
+  const [width, height] = useWindowSize()
 
   return (
     <Styled.Container>
       <Styled.Div1>
-        <Styled.Div2 width={size[0]} height={size[1]}>
+        <Styled.Div2 width={width} height={height}>
           <Styled.Div3>
             <Styled.Div4
               canvasWidth={canvasWidth}
               canvasHeight={canvasHeight}
               imageUrl={imageUrl}
-              width={size[0]}
-              height={size[1]}
+              width={width}
+              height={height}
             >
               <span>{text[0].textParams.text}</span>
             </Styled.Div4>

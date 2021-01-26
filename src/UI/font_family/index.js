@@ -22,7 +22,7 @@ const FontFamily = () => {
   return (
     <Styled.Container>
       <Styled.Text> FontFamily</Styled.Text>
-      <Styled.Select className={`${isActive ? 'active' : ''}`}>
+      <Styled.Select isActive={isActive}>
         <Styled.Div>
           {font}
           <Styled.Icon

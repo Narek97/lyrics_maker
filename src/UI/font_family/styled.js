@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { Span, scroll } from '../../styled'
 
 export const Container = styled.div`
@@ -30,13 +30,12 @@ export const Select = styled.div`
   margin-top: 10px;
   height: 40px;
   overflow: hidden;
-  &.active ${Icon} {
-    transform: rotate(90deg);
-  }
-
-  &.active {
+  ${props => props.isActive && css`
+    ${Icon} {
+      transform: rotate(90deg);
+    }
     height: 300px;
-  }
+  `}
 
   transition: all 0.2s ease-in-out;
   ${scroll}
