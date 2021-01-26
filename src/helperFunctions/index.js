@@ -103,11 +103,12 @@ const moveTimeLinerRight = (
     initialTimerSize.left - 10,
     container.width
   )
-  const newWidth = getElementPercent(e.pageX - timeLiner.left, container.width)
+
+  const newWidth = getElementPercent(e.pageX, container.width)
   const time = getElemetTime(substring(element.style.width))
   const isValid = validateTimeLiner(newWidth, audioChunks, idx)
   if (isValid) {
-    element.style.width = `${newWidth + firstTime}%`
+    element.style.width = `${newWidth - firstTime}%`
   }
   return time
 }
